@@ -20,7 +20,7 @@ async function createReceiptWithCheck() {
     const clientId = 'your-client-id-here'; // Replace with actual client ID
 
     // Option B: Find client by tax ID first
-    const taxId = '036256147'; // Replace with actual tax ID
+    const taxId = '123456789'; // Replace with actual tax ID
     console.log(`Looking for client with tax ID: ${taxId}...`);
 
     const foundClient = await client.clients.findByTaxId(taxId);

@@ -16,9 +16,7 @@ async function testFindByTaxId() {
     console.log('Testing client search by tax ID...\n');
 
     // Test 1: Try to find a client by tax ID
-    // const taxId = '123456789';
-    const taxId = '036256147';
-    // const taxId = '36256147';
+    const taxId = '123456789';
     console.log(`Searching for client with tax ID: ${taxId}`);
     const foundClient = await client.clients.findByTaxId(taxId);
     console.log(`Searching for client with tax ID: ${taxId}`,foundClient);

@@ -16,7 +16,7 @@ async function createReceiptWithMultipleChecks() {
     console.log('Creating Receipt with Multiple Check Payments\n');
 
     // Find client by tax ID
-    const taxId = '036256147';
+    const taxId = '123456789';
     console.log(`Looking for client with tax ID: ${taxId}...`);
 
     const foundClient = await client.clients.findByTaxId(taxId);
