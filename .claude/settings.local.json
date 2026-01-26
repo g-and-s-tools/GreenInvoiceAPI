@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:greeninvoice.docs.apiary.io)",
+      "Bash(node:*)"
+    ]
+  }
+}
