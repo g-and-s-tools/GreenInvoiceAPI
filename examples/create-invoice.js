@@ -1,10 +1,10 @@
 const { GreenInvoiceAPI, DocumentType } = require('@gs/greeninvoice-api');
-
+// Initialize the client
 const client = new GreenInvoiceAPI({
   apiKey: process.env.GREEN_INVOICE_API_KEY,
   secret: process.env.GREEN_INVOICE_SECRET,
-  environment: 'production',
-  debug: false,
+  environment:'sandbox',
+  debug: true, // Enable debug logging
 });
 
 async function createInvoice() {

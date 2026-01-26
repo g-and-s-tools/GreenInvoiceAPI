@@ -14,13 +14,13 @@ Official Node.js SDK for the [Green Invoice API](https://www.greeninvoice.co.il)
 ## Installation
 
 ```bash
-npm install @gs/greeninvoice-api
+npm install @g-and-s/greeninvoice-api
 ```
 
 ## Quick Start
 
 ```javascript
-const { GreenInvoiceAPI } = require('@gs/greeninvoice-api');
+const { GreenInvoiceAPI } = require('@g-and-s/greeninvoice-api');
 
 const client = new GreenInvoiceAPI({
   apiKey: 'your-api-key',
@@ -223,7 +223,7 @@ const {
   RateLimitError,
   APIError,
   NetworkError
-} = require('@gs/greeninvoice-api');
+} = require('@g-and-s/greeninvoice-api');
 
 try {
   const invoice = await client.documents.create({...});
@@ -255,7 +255,7 @@ import {
   CreateClientRequest,
   DocumentType,
   Currency
-} from '@gs/greeninvoice-api';
+} from '@g-and-s/greeninvoice-api';
 
 const client = new GreenInvoiceAPI({
   apiKey: process.env.API_KEY!,

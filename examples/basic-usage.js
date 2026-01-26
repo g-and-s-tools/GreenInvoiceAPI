@@ -1,16 +1,14 @@
 const { GreenInvoiceAPI } = require('@gs/greeninvoice-api');
 
 
- GREEN_INVOICE_API_KEY='8e684aed-6907-4f6e-9888-16655e95161e'
- GREEN_INVOICE_SECRET='NzoNQVhYFUk6J6zNh_H7SA'
- GREENINVOICE_ENV='sandbox'
+
 
 
 // Initialize the client
 const client = new GreenInvoiceAPI({
-  apiKey: GREEN_INVOICE_API_KEY,
-  secret: GREEN_INVOICE_SECRET,
-  environment:GREENINVOICE_ENV, // or 'sandbox'
+  apiKey: process.env.GREEN_INVOICE_API_KEY,
+  secret: process.env.GREEN_INVOICE_SECRET,
+  environment:'sandbox',
   debug: true, // Enable debug logging
 });
 

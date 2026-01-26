@@ -1,5 +1,5 @@
 {
-  "name": "@gs/greeninvoice-api",
+  "name": "@g-and-s/greeninvoice-api",
   "version": "1.0.0",
   "description": "Node.js SDK for Green Invoice API",
   "main": "./dist/index.js",
@@ -30,10 +30,22 @@
     "accounting",
     "api",
     "sdk",
-    "typescript"
+    "typescript",
+    "receipt",
+    "tax-invoice",
+    "hebrew",
+    "ils"
   ],
-  "author": "",
+  "author": "Oren Kolker <oren@g-and-s.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/g-and-s-tools/GreenInvoiceAPI"
+  },
+  "bugs": {
+    "url": "https://github.com/g-and-s-tools/GreenInvoiceAPI/issues"
+  },
+  "homepage": "https://github.com/g-and-s-tools/GreenInvoiceAPI#readme",
   "engines": {
     "node": ">=14.0.0"
   },

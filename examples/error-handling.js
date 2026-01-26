@@ -9,7 +9,7 @@ const {
 const client = new GreenInvoiceAPI({
   apiKey: process.env.GREEN_INVOICE_API_KEY,
   secret: process.env.GREEN_INVOICE_SECRET,
-  environment: 'production',
+  environment: 'sandbox',
 });
 
 async function handleErrors() {
