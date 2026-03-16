@@ -123,16 +123,25 @@ export class Clients extends BaseResource {
    * ```
    */
   async findByTaxId(taxId: string): Promise<Client | null> {
-    try {
-      // Use POST to /clients/search endpoint with taxId in body
-      const response = await this.request<any>('POST', 'search', { taxId });
+    const str = String(taxId);
+    const stripped = str.replace(/^0+/, '') || '0';
+    const variants = [...new Set([str, stripped, stripped.padStart(9, '0')])];
 
-      // Response could be array or object with items
-      const items = Array.isArray(response) ? response : (response.items || []);
-      return items.length > 0 ? items[0] : null;
-    } catch (error) {
-      // If not found or endpoint doesn't support this, return null
-      return null;
+    for (const variant of variants) {
+      try {
+        // Use POST to /clients/search endpoint with taxId in body
+        const response = await this.request<any>('POST', 'search', { taxId: variant });
+
+        // Response could be array or object with items
+        const items: Client[] = Array.isArray(response) ? response : (response.items || []);
+        const active = items.filter((c: any) => c.active !== false);
+        if (active.length > 0) return active[0];
+      } catch (error) {
+        // If not found or endpoint doesn't support this, try next variant
+        continue;
+      }
     }
+
+    return null;
   }
 }
