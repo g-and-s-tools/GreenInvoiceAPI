@@ -100,11 +100,37 @@ export class Clients extends BaseResource {
    * ```
    */
   async search(query: string | object): Promise<Client[]> {
-    // Use POST to /clients/search endpoint
     const searchParams = typeof query === 'string' ? { name: query } : query;
-    const response = await this.request<any>('POST', 'search', searchParams);
 
-    // Response could be array or object with items
+    // When searching by taxId, try leading-zero variants so that a stored
+    // taxId of "025245242" is found even when "25245242" is supplied (and vice versa).
+    if (typeof searchParams === 'object' && 'taxId' in searchParams && searchParams.taxId != null) {
+      const raw = String((searchParams as any).taxId);
+      const stripped = raw.replace(/^0+/, '') || '0';
+      const variants = [...new Set([raw, stripped, stripped.padStart(9, '0')])];
+
+      const seen = new Set<string>();
+      const results: Client[] = [];
+
+      for (const variant of variants) {
+        try {
+          const response = await this.request<any>('POST', 'search', { ...searchParams, taxId: variant });
+          const items: Client[] = Array.isArray(response) ? response : (response.items || []);
+          for (const client of items) {
+            if (!seen.has(client.id)) {
+              seen.add(client.id);
+              results.push(client);
+            }
+          }
+        } catch {
+          // variant not found — continue to next
+        }
+      }
+
+      return results;
+    }
+
+    const response = await this.request<any>('POST', 'search', searchParams);
     return Array.isArray(response) ? response : (response.items || []);
   }
 
